@@ -38,7 +38,9 @@ public class ChessController {
             }
 
             if(squareClicked.isMoveAction()) {
-                chessPanel.movePiece(squareClicked.getMove());
+                Position from = new Position(chessPanel.getActiveSquare().getRow(), chessPanel.getActiveSquare().getColumn());
+                Position to = new Position(squareClicked.getRow(), squareClicked.getColumn());
+                chessPanel.movePiece(from, to);
                 changeTurn();
                 return;
             }
@@ -53,8 +55,8 @@ public class ChessController {
             }
 
             chessPanel.setActiveSquare(squareClicked);
-            List<Move> moveList = piece.getMoves(chessPanel.getBoard(), from);
-            moveList.stream().forEach(move -> chessPanel.getSquares()[move.getTo().getRow()][move.getTo().getColumn()].setMovable(move));
+            List<Move> moveList = piece.getLegalMoves(chessPanel.getBoard(), from);
+            moveList.stream().forEach(move -> chessPanel.getSquares()[move.getTo().getRow()][move.getTo().getColumn()].setMovable(true));
         };
     }
 

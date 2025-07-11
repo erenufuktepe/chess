@@ -1,7 +1,8 @@
 package model;
 
+import model.strategy.KingMoveStrategy;
+
 public class King extends Piece {
     public King(boolean isWhite) {
-        setWhite(isWhite);
-    }
+        super(isWhite, new KingMoveStrategy());    }
 }

@@ -57,6 +57,10 @@ public class Board {
         return true;
     }
 
+    public boolean isEmpty(Position position) {
+        return this.board[position.getRow()][position.getColumn()] == null ? true : false;
+    }
+
     public boolean isCheckmate(boolean isWhiteTurn) {
         return false;
     }

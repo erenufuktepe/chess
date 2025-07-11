@@ -1,13 +1,20 @@
 package model;
 
+import model.strategy.MoveStrategy;
+
 import java.util.List;
 
 public abstract class Piece {
     private boolean isWhite;
-    private boolean isFirstMove;
+    private MoveStrategy moveStrategy;
 
-    public List<Move> getMoves(Board board, Position from) {
-        throw new UnsupportedOperationException();
+    public List<Move> getLegalMoves(Board board, Position from) {
+        return moveStrategy.getLegalMoves(from, board, this);
+    }
+
+    public Piece(boolean isWhite, MoveStrategy moveStrategy) {
+        this.isWhite = isWhite;
+        this.moveStrategy = moveStrategy;
     }
 
     public boolean isWhite() {
@@ -19,12 +26,4 @@ public abstract class Piece {
         return this;
     }
 
-    public boolean isFirstMove() {
-        return this.isFirstMove;
-    }
-
-    public Piece setIsFirstMove(boolean isFirstMove) {
-        this.isFirstMove = isFirstMove;
-        return this;
-    }
 }

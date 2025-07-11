@@ -1,50 +1,38 @@
 package model;
 
 public class Move {
-    private Position from;
-    private Position to;
-    private Piece movedPiece;
-    private Piece capturedPiece;
+    private final Position from;
+    private final Position to;
+    private final Piece capturedPiece;
+    private final boolean isPromotion;
+    private final boolean isEnPassant;
 
-    public Move(Piece movedPiece, Position from, Position to) {
-        this.movedPiece = movedPiece;
+    public Move(Position from, Position to, Piece capturedPiece, boolean isPromotion, boolean isEnPassant) {
+        this.capturedPiece = capturedPiece;
         this.from = from;
         this.to = to;
+        this.isPromotion = isPromotion;
+        this.isEnPassant = isEnPassant;
     }
 
     public Position getFrom() {
         return this.from;
     }
 
-    public Move setFrom(Position from) {
-        this.from = from;
-        return this;
-    }
-
     public Position getTo() {
         return this.to;
-    }
-
-    public Move setTo(Position to) {
-        this.to = to;
-        return this;
-    }
-
-    public Piece getMovedPiece() {
-        return this.movedPiece;
-    }
-
-    public Move setMovedPiece(Piece movedPiece) {
-        this.movedPiece = movedPiece;
-        return this;
     }
 
     public Piece getCapturedPiece() {
         return this.capturedPiece;
     }
 
-    public Move setCapturedPiece(Piece capturedPiece) {
-        this.capturedPiece = capturedPiece;
-        return this;
+    public boolean isPromotion() {
+        return this.isPromotion;
     }
+
+    public boolean isEnPassant() {
+        return this.isEnPassant;
+    }
+
 }

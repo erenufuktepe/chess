@@ -2,7 +2,7 @@ package view;
 
 import controller.ChessController;
 import model.Board;
-import model.Move;
+import model.Position;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,7 +26,12 @@ public class ChessPanel extends JPanel {
         for(int x = 0; x < 8; x++) {
             for(int y = 0; y < 8; y++) {
                 Color color = (x + y) % 2 == 0  ? Color.WHITE : Color.DARK_GRAY;
-                squares[x][y] = new Square(x, y, color , board.getBoard()[x][y]);
+                squares[x][y] = new Square(x, y, color);
+
+                if(board.getBoard()[x][y] != null) {
+                    squares[x][y].drawIcon(board.getBoard()[x][y].isWhite(), board.getBoard()[x][y].getClass().getSimpleName());
+                }
+
                 squares[x][y].addActionListener(controller.pieceOnClick());
                 add(squares[x][y]);
             }
@@ -36,7 +41,7 @@ public class ChessPanel extends JPanel {
     public void resetSquares() {
         for(int x = 0; x < 8; x++) {
             for(int y = 0; y < 8; y++) {
-                this.squares[x][y].setMovable(null);
+                this.squares[x][y].setMovable(false);
             }
         }
     }
@@ -46,17 +51,12 @@ public class ChessPanel extends JPanel {
     }
 
     public void setActiveSquare(Square square) {
-        if(square.hasPiece()) {
-
-        }
         this.activeSquare = square;
     }
 
-    public void movePiece(Move move) {
-        squares[move.getFrom().getRow()][move.getFrom().getColumn()].drawPiece(null);
-        squares[move.getTo().getRow()][move.getTo().getColumn()].drawPiece(move.getMovedPiece());
-        move.getMovedPiece().setIsFirstMove(false);
-        board.movePiece(move.getFrom(), move.getTo());
+    public void movePiece(Position from, Position to) {
+        squares[from.getRow()][from.getColumn()].moveIcon(squares[to.getRow()][to.getColumn()]);
+        board.movePiece(from, to);
         resetSquares();
     }
 
