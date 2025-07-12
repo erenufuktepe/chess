@@ -1,9 +1,9 @@
 package model;
 
-import model.strategy.PawnMoveStrategy;
+import model.strategy.RookMoveStrategy;
 
 public class Rook extends Piece {
     public Rook(boolean isWhite) {
-        super(isWhite, new PawnMoveStrategy());
+        super(isWhite, new RookMoveStrategy());
     }
 }

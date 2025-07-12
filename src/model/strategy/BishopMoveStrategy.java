@@ -10,19 +10,19 @@ import java.util.List;
 
 public class BishopMoveStrategy extends BaseMoveStrategy {
 
+    private static final int[][] OFFSETS = {
+            {1, 1},
+            {1, -1},
+            {-1, -1},
+            {-1, 1}
+    };
+
     @Override
     public List<Move> getLegalMoves(Position currentPosition, Board board, Piece piece) {
         List<Move> moves = new ArrayList<>();
 
-        int[][] directions = {
-                {1, 1},
-                {1, -1},
-                {-1, -1},
-                {-1, 1}
-        };
-
-        for (int[] dir : directions) {
-            addMovesInDirection(currentPosition, board, moves, dir[0], dir[1], piece);
+        for (int[] offset : OFFSETS) {
+            addMovesInDirection(currentPosition, board, moves, offset[0], offset[1], piece);
         }
 
         return moves;
