@@ -1,5 +1,7 @@
 package model;
 
+import model.pieces.Piece;
+
 public class Move {
     private final Position from;
     private final Position to;

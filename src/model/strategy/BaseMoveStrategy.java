@@ -2,7 +2,7 @@ package model.strategy;
 
 import model.Board;
 import model.Move;
-import model.Piece;
+import model.pieces.Piece;
 import model.Position;
 
 import java.util.List;

@@ -1,11 +1,15 @@
-package model;
+package model.pieces;
 
+import model.Board;
+import model.Move;
+import model.Position;
 import model.strategy.MoveStrategy;
 
 import java.util.List;
 
 public abstract class Piece {
     private boolean isWhite;
+    private boolean hasMoved;
     private MoveStrategy moveStrategy;
 
     public List<Move> getLegalMoves(Board board, Position from) {
@@ -21,8 +25,12 @@ public abstract class Piece {
         return this.isWhite;
     }
 
-    public Piece setWhite(boolean isWhite) {
-        this.isWhite = isWhite;
+    public boolean hasMoved() {
+        return this.hasMoved;
+    }
+
+    public Piece setHasMoved(boolean hasMoved) {
+        this.hasMoved = hasMoved;
         return this;
     }
 
